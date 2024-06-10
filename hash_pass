@@ -1,0 +1,28 @@
+<?php
+$servername = "localhost";
+$username = "Railson";
+$password = "1234";
+$database = "login_system";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+$new_username = "Railson";
+$new_password = password_hash("1234", PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $new_username, $new_password);
+
+if ($stmt->execute()) {
+    echo "Usuário criado com sucesso!";
+} else {
+    echo "Erro ao criar usuário: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>

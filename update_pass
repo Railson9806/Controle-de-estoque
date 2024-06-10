@@ -1,0 +1,27 @@
+<?php
+$servername = "localhost";
+$username = "Railson";
+$password = "1234";
+$database = "login_system";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+$new_password = password_hash("1234", PASSWORD_DEFAULT);
+
+$sql = "UPDATE users SET password = ? WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $new_password, $username);
+
+if ($stmt->execute()) {
+    echo "Senha atualizada com sucesso!";
+} else {
+    echo "Erro ao atualizar senha: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>
