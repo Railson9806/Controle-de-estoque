@@ -1,0 +1,5 @@
+- link para login
+https://localhost/login_system/login.php
+
+´- link php ADM
+https://localhost/phpmyadmin
