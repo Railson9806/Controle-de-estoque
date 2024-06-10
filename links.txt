@@ -3,3 +3,5 @@ https://localhost/login_system/login.php
 
 ´- link php ADM
 https://localhost/phpmyadmin
+
+http/localhost/login_system/insert_products.php
